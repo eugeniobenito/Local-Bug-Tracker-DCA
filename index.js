@@ -3,51 +3,10 @@ const User = require('./models/User.js')
 const Table = require('cli-table');
 const Colors = require('colors');
 const { Topic, Comment } = require('./models/Topic.js');
-const { multiLinePrompt } = require('./utils');
+const { multiLinePrompt, login, signin } = require('./utils');
+const { main_menu, logged_menu, admin_logged_menu } = require('./utils.js');
 
-/*
-const multiLinePrompt = ask => {
-    const lines = ask.split(/\r?\n/);
-    const promptLine = lines.pop();
-    console.log(lines.join('\n'));
-    return prompt(promptLine);
-};*/
-
-let Usuarios = [new User("admin", "admin"), new User("carlos97", "1234")];
-Usuarios[0].setRol("admin");
-
-let Comments = [new Comment(Usuarios[0], "Mensajeee"), new Comment(Usuarios[0], "Te callas la bocazaaaa payaso enenosdibvaudf aiusbasiub aisuhasih auais")];
-let Topics = [new Topic("No funciona esto", "v1.0.0", Comments, Usuarios[0]), new Topic("Que es esto", "v2.0.0", [], Usuarios[0])];
-
-const main_menu = "-------------------------------------\n 1. Iniciar sesión\n 2. Registrarse\n Opción: ";
-logged_menu = "> Selecciona un topic (Option) | Añadir un topic (0) | Salir (x): ";
-admin_logged_menu = "> Selecciona un topic (Option) | Salir (x): ";
-
-const login = () => {
-    console.log("-------------------------------------LOGIN");
-    const user_name = prompt("Usuario: ");
-    const user_password = prompt("Contraseña: ");
-
-    const first = Usuarios.find((user) => {
-        return user.name === user_name && user.password === user_password;
-    });
-
-    return first;
-}
-
-const signin = () => {
-    console.log("-------------------------------------SIGN IN");
-    const user_name = prompt("Usuario: ");
-    const user_password = prompt("Contraseña: ");
-
-    const first = Usuarios.find((user) => {
-        return user.name === user_name && user.password === user_password;
-    });
-
-    if (!first) {
-        Usuarios.push(new User(user_name, user_password));
-    }
-}
+let { Usuarios, Topics, Comments } = require('./utils.js') 
 
 const sub_menu = (usuario) => {
 
@@ -96,7 +55,7 @@ const sub_menu = (usuario) => {
                 }
             }
             else { 
-                const ask = prompt("salir (0): ");
+                const ask = prompt("salir (x): ");
             }
         }
         else if (Number(option) == 0 && usuario.rol == 'client') {
