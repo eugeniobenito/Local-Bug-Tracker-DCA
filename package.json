@@ -1,0 +1,15 @@
+{
+  "name": "practica_2",
+  "version": "1.0.0",
+  "description": "Local Bug Tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eugenio Benito López",
+  "license": "ISC",
+  "dependencies": {
+    "cli-table": "^0.3.11",
+    "prompt-sync": "^4.2.0"
+  }
+}
